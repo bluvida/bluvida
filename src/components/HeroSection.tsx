@@ -34,6 +34,15 @@ export function HeroSection() {
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
+          {/* Logo */}
+          <div className="mb-8 animate-fade-in">
+            <img 
+              src="/lovable-uploads/fafc99d5-5f39-4626-b055-f72bdbe00e48.png" 
+              alt="BluVida - Saúde + Benefícios" 
+              className="h-20 mx-auto"
+            />
+          </div>
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-full px-4 py-2 mb-8 animate-fade-in">
             <div className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
