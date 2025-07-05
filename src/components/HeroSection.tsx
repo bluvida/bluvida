@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { DemoModal } from "./DemoModal";
 import { ArrowDown, Play } from "lucide-react";
 import heroImage from "@/assets/hero-telemedicine.jpg";
+import logo from "@/assets/logo_bluVida_white.png";
 
 export function HeroSection() {
   return (
@@ -37,7 +38,7 @@ export function HeroSection() {
           {/* Logo */}
           <div className="mb-8 animate-fade-in">
             <img 
-              src="/lovable-uploads/fafc99d5-5f39-4626-b055-f72bdbe00e48.png" 
+              src={logo}  
               alt="BluVida - Saúde + Benefícios" 
               className="h-20 mx-auto"
             />
