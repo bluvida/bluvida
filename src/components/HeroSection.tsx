@@ -94,7 +94,7 @@ export function HeroSection() {
               <div className="w-8 h-8 bg-success/20 rounded-full flex items-center justify-center">
                 <span className="text-success text-lg">✓</span>
               </div>
-              <span>Implementação em 48h</span>
+              <span>Implementação rápida</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-success/20 rounded-full flex items-center justify-center">
@@ -106,7 +106,7 @@ export function HeroSection() {
               <div className="w-8 h-8 bg-success/20 rounded-full flex items-center justify-center">
                 <span className="text-success text-lg">✓</span>
               </div>
-              <span>Sem taxa de setup</span>
+              <span>Sua marca, seu domínio</span>
             </div>
           </div>
         </div>
