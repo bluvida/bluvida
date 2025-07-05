@@ -5,7 +5,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/fafc99d5-5f39-4626-b055-f72bdbe00e48.png" 
+              src="/lovable-uploads/logo_bluVida_white.png" 
               alt="BluVida - Saúde + Benefícios" 
               className="h-12"
             />
@@ -13,7 +13,7 @@ export function Footer() {
           
           <div className="text-center md:text-right">
             <p className="text-sm text-primary-foreground/80">
-              © 2024 BluVida. Todos os direitos reservados.
+              © 2025 BluVida. Todos os direitos reservados.
             </p>
             <p className="text-xs text-primary-foreground/60 mt-1">
               Plataforma White Label de Telemedicina para Corretoras
