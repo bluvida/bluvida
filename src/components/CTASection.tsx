@@ -38,7 +38,7 @@ export function CTASection() {
           {/* Benefits list */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              "Setup em 48h",
+              "Comece a vender em menos de 40 dias",
               "Treinamento incluído", 
               "Suporte dedicado"
             ].map((benefit, index) => (
