@@ -31,7 +31,7 @@ export function CTASection() {
             </h2>
 
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Agende uma demonstração e veja como sua plataforma pode estar ativa em poucos dias.
+              Agende uma demonstração e veja como sua plataforma pode estar ativa em pouco tempo.
             </p>
           </div>
 
