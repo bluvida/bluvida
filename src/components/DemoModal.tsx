@@ -243,5 +243,4 @@ export function DemoModal({ trigger }: DemoModalProps) {
           </Button>
         </form>
       </DialogContent>
-    </Dialog>
   );
