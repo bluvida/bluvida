@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { CalendarDays, Send } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 interface DemoModalProps {
   trigger: React.ReactNode;
@@ -34,24 +35,50 @@ export function DemoModal({ trigger }: DemoModalProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Configuração do EmailJS - substitua pelos seus IDs reais
+      const serviceId = 'YOUR_SERVICE_ID'; // Substitua pelo seu Service ID
+      const templateId = 'template_lp'; // Template ID fornecido
+      const publicKey = 'YOUR_PUBLIC_KEY'; // Substitua pela sua Public Key
 
-    toast({
-      title: "Demonstração agendada!",
-      description: "Nossa equipe entrará em contato em breve para agendar sua demonstração personalizada.",
-    });
+      // Mapeamento dos campos conforme solicitado
+      const templateParams = {
+        nome: formData.name,
+        email: formData.email,
+        wpp: formData.whatsapp,
+        empresa: formData.company,
+        nofunc: formData.companySize,
+        mensagem: formData.message
+      };
 
-    setIsOpen(false);
-    setFormData({
-      name: "",
-      email: "",
-      whatsapp: "",
-      company: "",
-      companySize: "",
-      message: ""
-    });
-    setIsSubmitting(false);
+      // Envio do email via EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      toast({
+        title: "Demonstração agendada!",
+        description: "Nossa equipe entrará em contato em breve para agendar sua demonstração personalizada.",
+      });
+
+      setIsOpen(false);
+      setFormData({
+        name: "",
+        email: "",
+        whatsapp: "",
+        company: "",
+        companySize: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('Erro ao enviar email:', error);
+      toast({
+        title: "Erro ao enviar",
+        description: "Ocorreu um erro ao enviar sua solicitação. Tente novamente ou entre em contato via WhatsApp.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -161,6 +188,18 @@ export function DemoModal({ trigger }: DemoModalProps) {
             )}
           </Button>
         </form>
+
+        <div className="text-xs text-muted-foreground text-center mt-4">
+          <p>
+            <strong>Importante:</strong> Para configurar o EmailJS, você precisa:
+          </p>
+          <ol className="list-decimal list-inside mt-2 space-y-1 text-left">
+            <li>Criar uma conta em <a href="https://emailjs.com" target="_blank" className="text-primary hover:underline">emailjs.com</a></li>
+            <li>Configurar um serviço de email (Gmail, Outlook, etc.)</li>
+            <li>Criar o template "template_lp" com os campos: nome, email, wpp, empresa, nofunc, mensagem</li>
+            <li>Substituir YOUR_SERVICE_ID e YOUR_PUBLIC_KEY no código</li>
+          </ol>
+        </div>
       </DialogContent>
     </Dialog>
   );
