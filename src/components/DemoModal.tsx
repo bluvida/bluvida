@@ -221,6 +221,4 @@ export function DemoModal({ trigger }: DemoModalProps) {
       </DialogContent>
     </Dialog>
   );
-    </Dialog>
-  );
 }
