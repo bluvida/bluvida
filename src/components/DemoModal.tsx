@@ -246,7 +246,3 @@ export function DemoModal({ trigger }: DemoModalProps) {
     </Dialog>
   );
 }
-
-    </Dialog>
-  );
-}
