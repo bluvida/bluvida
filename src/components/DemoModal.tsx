@@ -166,6 +166,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
               <Label htmlFor="whatsapp">WhatsApp *</Label>
               <Input
                 id="whatsapp"
+                type="tel"
                 value={formData.whatsapp}
                 onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                 placeholder="+55 11 99999-9999"
@@ -243,4 +244,6 @@ export function DemoModal({ trigger }: DemoModalProps) {
           </Button>
         </form>
       </DialogContent>
+    </Dialog>
   );
+}
