@@ -283,7 +283,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
               id="message"
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
-              placeholder="Conte-nos mais sobre suas necessidades..."
+              placeholder="Conte-nos mais sua área de atuação e sobre suas necessidades..."
               className="border-primary/20 focus:border-primary min-h-[80px]"
             />
           </div>
