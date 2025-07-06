@@ -44,12 +44,19 @@ export function DemoModal({ trigger }: DemoModalProps) {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    // A validação pode ser feita aqui para feedback em tempo real
     if (field === "whatsapp") {
       validateWhatsApp(value);
     }
   };
 
   const validateWhatsApp = (whatsapp: string): boolean => {
+    // Se o campo estiver vazio, não há erro, mas ele ainda será tratado como obrigatório na submissão
+    if (!whatsapp.trim()) {
+      setWhatsappError("");
+      return false; // Não é válido se estiver vazio, mas não exibe erro específico ainda
+    }
+
     const phoneNumber = parsePhoneNumberFromString(whatsapp);
     if (!phoneNumber || !phoneNumber.isValid()) {
       setWhatsappError(
@@ -64,10 +71,21 @@ export function DemoModal({ trigger }: DemoModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateWhatsApp(formData.whatsapp)) {
+    // Revalida o WhatsApp no momento da submissão para garantir o estado mais recente
+    const isWhatsAppValid = validateWhatsApp(formData.whatsapp);
+
+    // Validação de todos os campos obrigatórios
+    const areRequiredFieldsFilled =
+      formData.name.trim() !== "" &&
+      formData.email.trim() !== "" &&
+      formData.company.trim() !== "" &&
+      formData.whatsapp.trim() !== ""; // WhatsApp também é obrigatório
+
+    if (!isWhatsAppValid || !areRequiredFieldsFilled) {
       toast({
         title: "Erro de validação",
-        description: "Por favor, insira um número de WhatsApp válido.",
+        description:
+          "Por favor, preencha todos os campos obrigatórios e insira um número de WhatsApp válido.",
         variant: "destructive",
       });
       return;
@@ -81,8 +99,10 @@ export function DemoModal({ trigger }: DemoModalProps) {
       const publicKey = "EeR2CC2ldoYNUt_1M";
 
       const phoneNumber = parsePhoneNumberFromString(formData.whatsapp);
+      // Garante um fallback caso phoneNumber seja null/undefined
       const formattedPhone = phoneNumber?.formatInternational() ?? formData.whatsapp;
-      const cleanNumber = phoneNumber?.number.replace("+", "") ?? "";
+      // Garante que cleanNumber seja uma string vazia se phoneNumber for null
+      const cleanNumber = phoneNumber?.number?.replace("+", "") ?? "";
       const whatsappLink = `https://wa.me/${cleanNumber}`;
 
       const templateParams = {
@@ -112,7 +132,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
         companySize: "",
         message: "",
       });
-      setWhatsappError("");
+      setWhatsappError(""); // Limpa o erro ao fechar
     } catch (error) {
       console.error("Erro ao enviar email:", error);
       toast({
@@ -125,6 +145,15 @@ export function DemoModal({ trigger }: DemoModalProps) {
       setIsSubmitting(false);
     }
   };
+
+  // Determina se o botão de envio deve estar desabilitado
+  const isSubmitDisabled =
+    isSubmitting ||
+    !!whatsappError || // Desabilita se houver um erro de formatação do WhatsApp
+    !formData.name.trim() || // Desabilita se o nome estiver vazio
+    !formData.email.trim() || // Desabilita se o email estiver vazio
+    !formData.company.trim() || // Desabilita se a empresa estiver vazia
+    !formData.whatsapp.trim(); // Desabilita se o WhatsApp estiver vazio
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -169,6 +198,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
                 type="tel"
                 value={formData.whatsapp}
                 onChange={(e) => handleInputChange("whatsapp", e.target.value)}
+                onBlur={(e) => validateWhatsApp(e.target.value)} // Adicionado validação no onBlur
                 placeholder="+55 11 99999-9999"
                 required
                 className={`border-primary/20 focus:border-primary ${
@@ -228,7 +258,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
             variant="hero"
             size="lg"
             className="w-full"
-            disabled={isSubmitting || !!whatsappError}
+            disabled={isSubmitDisabled} // Usa a variável calculada
           >
             {isSubmitting ? (
               <>
@@ -244,6 +274,9 @@ export function DemoModal({ trigger }: DemoModalProps) {
           </Button>
         </form>
       </DialogContent>
+    </Dialog>
+  );
+}
     </Dialog>
   );
 }
