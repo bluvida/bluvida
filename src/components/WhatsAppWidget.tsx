@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram } from "lucide-react";
 
 export function WhatsAppWidget() {
   const [isVisible, setIsVisible] = useState(true);
@@ -15,29 +14,7 @@ export function WhatsAppWidget() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Social Media Links */}
-      <div className="flex gap-2">
-        <a 
-          href="https://www.facebook.com/bluvida" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-          aria-label="Facebook da BluVida"
-        >
-          <Facebook className="w-6 h-6" />
-        </a>
-        <a 
-          href="https://www.instagram.com/bluvidasaude" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-          aria-label="Instagram da BluVida"
-        >
-          <Instagram className="w-6 h-6" />
-        </a>
-      </div>
-
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       {/* Floating message */}
       <div className="bg-card/95 backdrop-blur-sm border border-primary/20 rounded-lg px-4 py-2 shadow-elegant max-w-[200px] animate-fade-in">
         <p className="text-sm text-foreground/90 leading-relaxed">
