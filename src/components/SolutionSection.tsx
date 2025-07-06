@@ -6,7 +6,7 @@ export function SolutionSection() {
     {
       icon: Palette,
       title: "Aplicativo e painel com a identidade visual da sua corretora",
-      description: "Logo, cores e marca 100% personalizados"
+      description: "Logo, cores, domínio e marca 100% personalizados"
     },
     {
       icon: Shield,
