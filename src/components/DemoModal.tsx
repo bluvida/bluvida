@@ -37,9 +37,9 @@ export function DemoModal({ trigger }: DemoModalProps) {
 
     try {
       // Configuração do EmailJS - substitua pelos seus IDs reais
-      const serviceId = 'YOUR_SERVICE_ID'; // Substitua pelo seu Service ID
+      const serviceId = 'service_dkt0u4s'; // Substitua pelo seu Service ID
       const templateId = 'template_lp'; // Template ID fornecido
-      const publicKey = 'YOUR_PUBLIC_KEY'; // Substitua pela sua Public Key
+      const publicKey = 'EeR2CC2ldoYNUt_1M'; // Substitua pela sua Public Key
 
       // Mapeamento dos campos conforme solicitado
       const templateParams = {
