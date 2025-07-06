@@ -189,17 +189,6 @@ export function DemoModal({ trigger }: DemoModalProps) {
           </Button>
         </form>
 
-        <div className="text-xs text-muted-foreground text-center mt-4">
-          <p>
-            <strong>Importante:</strong> Para configurar o EmailJS, você precisa:
-          </p>
-          <ol className="list-decimal list-inside mt-2 space-y-1 text-left">
-            <li>Criar uma conta em <a href="https://emailjs.com" target="_blank" className="text-primary hover:underline">emailjs.com</a></li>
-            <li>Configurar um serviço de email (Gmail, Outlook, etc.)</li>
-            <li>Criar o template "template_lp" com os campos: nome, email, wpp, empresa, nofunc, mensagem</li>
-            <li>Substituir YOUR_SERVICE_ID e YOUR_PUBLIC_KEY no código</li>
-          </ol>
-        </div>
       </DialogContent>
     </Dialog>
   );
