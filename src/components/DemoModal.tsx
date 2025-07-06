@@ -21,18 +21,131 @@ export function DemoModal({ trigger }: DemoModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    whatsapp: "",
+    whatsapp: "+55 ",
     company: "",
     companySize: "",
     message: ""
   });
 
+  const [whatsappError, setWhatsappError] = useState("");
+
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    if (field === 'whatsapp') {
+      const formatted = formatWhatsApp(value);
+      setFormData(prev => ({ ...prev, [field]: formatted }));
+      validateWhatsApp(formatted);
+    } else {
+      setFormData(prev => ({ ...prev, [field]: value }));
+    }
+  };
+
+  const formatWhatsApp = (value: string) => {
+    // Remove tudo que não é número
+    let numbers = value.replace(/\D/g, '');
+    
+    // Se não começar com 55, adiciona
+    if (!numbers.startsWith('55')) {
+      numbers = '55' + numbers;
+    }
+    
+    // Limita a 13 dígitos (55 + 11 dígitos do celular)
+    numbers = numbers.substring(0, 13);
+    
+    // Formata: +55 (XX) XXXXX-XXXX
+    if (numbers.length >= 2) {
+      let formatted = '+55';
+      
+      if (numbers.length > 2) {
+        const ddd = numbers.substring(2, 4);
+        formatted += ` (${ddd}`;
+        
+        if (numbers.length > 4) {
+          formatted += ')';
+          const firstPart = numbers.substring(4, 9);
+          formatted += ` ${firstPart}`;
+          
+          if (numbers.length > 9) {
+            const secondPart = numbers.substring(9, 13);
+            formatted += `-${secondPart}`;
+          }
+        }
+      }
+      
+      return formatted;
+    }
+    
+    return '+55 ';
+  };
+
+  const validateWhatsApp = (whatsapp: string) => {
+    const numbers = whatsapp.replace(/\D/g, '');
+    
+    if (numbers.length < 13) {
+      setWhatsappError("WhatsApp deve ter 11 dígitos (DDD + número)");
+      return false;
+    }
+    
+    // Valida DDD (códigos válidos do Brasil)
+    const ddd = numbers.substring(2, 4);
+    const validDDDs = [
+      '11', '12', '13', '14', '15', '16', '17', '18', '19', // SP
+      '21', '22', '24', // RJ
+      '27', '28', // ES
+      '31', '32', '33', '34', '35', '37', '38', // MG
+      '41', '42', '43', '44', '45', '46', // PR
+      '47', '48', '49', // SC
+      '51', '53', '54', '55', // RS
+      '61', // DF
+      '62', '64', // GO
+      '63', // TO
+      '65', '66', // MT
+      '67', // MS
+      '68', // AC
+      '69', // RO
+      '71', '73', '74', '75', '77', // BA
+      '79', // SE
+      '81', '87', // PE
+      '82', // AL
+      '83', // PB
+      '84', // RN
+      '85', '88', // CE
+      '86', '89', // PI
+      '91', '93', '94', // PA
+      '92', '97', // AM
+      '95', // RR
+      '96', // AP
+      '98', '99' // MA
+    ];
+    
+    if (!validDDDs.includes(ddd)) {
+      setWhatsappError("DDD inválido");
+      return false;
+    }
+    
+    // Valida se é celular (9º dígito deve ser 9)
+    const ninthDigit = numbers.substring(4, 5);
+    if (ninthDigit !== '9') {
+      setWhatsappError("Número deve ser de celular (começar com 9)");
+      return false;
+    }
+    
+    setWhatsappError("");
+    return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validação do WhatsApp antes do envio
+    if (!validateWhatsApp(formData.whatsapp)) {
+      toast({
+        title: "Erro de validação",
+        description: "Por favor, corrija o número do WhatsApp.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -63,11 +176,12 @@ export function DemoModal({ trigger }: DemoModalProps) {
       setFormData({
         name: "",
         email: "",
-        whatsapp: "",
+        whatsapp: "+55 ",
         company: "",
         companySize: "",
         message: ""
       });
+      setWhatsappError("");
 
     } catch (error) {
       console.error('Erro ao enviar email:', error);
@@ -125,10 +239,16 @@ export function DemoModal({ trigger }: DemoModalProps) {
                 id="whatsapp"
                 value={formData.whatsapp}
                 onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                placeholder="(47) 99999-9999"
+                placeholder="+55 (47) 99999-9999"
                 required
-                className="border-primary/20 focus:border-primary"
+                className={`border-primary/20 focus:border-primary ${whatsappError ? 'border-destructive' : ''}`}
               />
+              {whatsappError && (
+                <p className="text-xs text-destructive mt-1">{whatsappError}</p>
+              )}
+              <p className="text-xs text-muted-foreground">
+                Formato: +55 (DDD) 9XXXX-XXXX
+              </p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="company">Empresa *</Label>
@@ -173,7 +293,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
             variant="hero" 
             size="lg" 
             className="w-full" 
-            disabled={isSubmitting}
+            disabled={isSubmitting || !!whatsappError}
           >
             {isSubmitting ? (
               <>
