@@ -35,29 +35,11 @@ export function DemoModal({ trigger }: DemoModalProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    toast({
-      title: "Demonstração agendada!",
-      description: "Nossa equipe entrará em contato em breve para agendar sua demonstração personalizada.",
-    });
-
-    setIsOpen(false);
-    setFormData({
-      name: "",
-      email: "",
-      whatsapp: "",
-      company: "",
-      companySize: "",
-      message: ""
-    });
-    setIsSubmitting(false);
     try {
       // Configuração do EmailJS - substitua pelos seus IDs reais
-      const serviceId = 'YOUR_SERVICE_ID'; // Substitua pelo seu Service ID
+      const serviceId = 'service_dkt0u4s'; // Substitua pelo seu Service ID
       const templateId = 'template_lp'; // Template ID fornecido
-      const publicKey = 'YOUR_PUBLIC_KEY'; // Substitua pela sua Public Key
+      const publicKey = 'EeR2CC2ldoYNUt_1M'; // Substitua pela sua Public Key
 
       // Mapeamento dos campos conforme solicitado
       const templateParams = {
@@ -206,19 +188,6 @@ export function DemoModal({ trigger }: DemoModalProps) {
             )}
           </Button>
         </form>
-
-        <div className="text-xs text-muted-foreground text-center mt-4">
-          <p>
-            <strong>Importante:</strong> Para configurar o EmailJS, você precisa:
-          </p>
-          <ol className="list-decimal list-inside mt-2 space-y-1 text-left">
-            <li>Criar uma conta em <a href="https://emailjs.com" target="_blank" className="text-primary hover:underline">emailjs.com</a></li>
-            <li>Configurar um serviço de email (Gmail, Outlook, etc.)</li>
-            <li>Criar o template "template_lp" com os campos: nome, email, wpp, empresa, nofunc, mensagem</li>
-            <li>Substituir YOUR_SERVICE_ID e YOUR_PUBLIC_KEY no código</li>
-          </ol>
-        </div>
       </DialogContent>
     </Dialog>
   );
-}
