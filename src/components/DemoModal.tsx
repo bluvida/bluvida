@@ -40,138 +40,97 @@ export function DemoModal({ trigger }: DemoModalProps) {
   };
 
   const formatWhatsApp = (value: string) => {
-    // Remove tudo que não é número ou +
-    let cleaned = value.replace(/[^\d+]/g, '');
+    // Remove tudo que não é número
+    let numbers = value.replace(/\D/g, '');
     
-    // Se não começar com +, adiciona
-    if (!cleaned.startsWith('+')) {
-      cleaned = '+' + cleaned;
+    // Se não começar com 55, adiciona
+    if (!numbers.startsWith('55')) {
+      numbers = '55' + numbers;
     }
     
-    // Se só tem +, adiciona 55 como padrão
-    if (cleaned === '+') {
-      return '+55 ';
-    }
+    // Limita a 13 dígitos (55 + 11 dígitos do celular)
+    numbers = numbers.substring(0, 13);
     
-    // Extrai DDI e número
-    const match = cleaned.match(/^\+(\d{1,3})(.*)$/);
-    if (!match) return '+55 ';
-    
-    const [, ddi, numbers] = match;
-    
-    // Limita DDI a 3 dígitos
-    const limitedDDI = ddi.substring(0, 3);
-    
-    // Para Brasil (+55), formata com DDD
-    if (limitedDDI === '55') {
-      const localNumbers = numbers.substring(0, 11); // Máximo 11 dígitos (DDD + número)
+    // Formata: +55 (XX) XXXXX-XXXX
+    if (numbers.length >= 2) {
+      let formatted = '+55';
       
-      if (localNumbers.length === 0) {
-        return `+${limitedDDI} `;
-      } else if (localNumbers.length <= 2) {
-        return `+${limitedDDI} (${localNumbers}`;
-      } else if (localNumbers.length <= 7) {
-        const ddd = localNumbers.substring(0, 2);
-        const firstPart = localNumbers.substring(2);
-        return `+${limitedDDI} (${ddd}) ${firstPart}`;
-      } else {
-        const ddd = localNumbers.substring(0, 2);
-        const firstPart = localNumbers.substring(2, 7);
-        const secondPart = localNumbers.substring(7);
-        return `+${limitedDDI} (${ddd}) ${firstPart}-${secondPart}`;
+      if (numbers.length > 2) {
+        const ddd = numbers.substring(2, 4);
+        formatted += ` (${ddd}`;
+        
+        if (numbers.length > 4) {
+          formatted += ')';
+          const firstPart = numbers.substring(4, 9);
+          formatted += ` ${firstPart}`;
+          
+          if (numbers.length > 9) {
+            const secondPart = numbers.substring(9, 13);
+            formatted += `-${secondPart}`;
+          }
+        }
       }
-    } else {
-      // Para outros países, formato simples
-      const localNumbers = numbers.substring(0, 15); // Máximo 15 dígitos total
-      return `+${limitedDDI} ${localNumbers}`;
+      
+      return formatted;
     }
+    
+    return '+55 ';
   };
 
   const validateWhatsApp = (whatsapp: string) => {
     const numbers = whatsapp.replace(/\D/g, '');
     
-    if (numbers.length < 8) {
-      setWhatsappError("WhatsApp deve ter pelo menos 8 dígitos");
+    if (numbers.length < 13) {
+      setWhatsappError("WhatsApp deve ter 11 dígitos (DDD + número)");
       return false;
     }
     
-    // Extrai DDI
-    const ddiMatch = whatsapp.match(/^\+(\d{1,3})/);
-    if (!ddiMatch) {
-      setWhatsappError("DDI inválido");
+    // Valida DDD (códigos válidos do Brasil)
+    const ddd = numbers.substring(2, 4);
+    const validDDDs = [
+      '11', '12', '13', '14', '15', '16', '17', '18', '19', // SP
+      '21', '22', '24', // RJ
+      '27', '28', // ES
+      '31', '32', '33', '34', '35', '37', '38', // MG
+      '41', '42', '43', '44', '45', '46', // PR
+      '47', '48', '49', // SC
+      '51', '53', '54', '55', // RS
+      '61', // DF
+      '62', '64', // GO
+      '63', // TO
+      '65', '66', // MT
+      '67', // MS
+      '68', // AC
+      '69', // RO
+      '71', '73', '74', '75', '77', // BA
+      '79', // SE
+      '81', '87', // PE
+      '82', // AL
+      '83', // PB
+      '84', // RN
+      '85', '88', // CE
+      '86', '89', // PI
+      '91', '93', '94', // PA
+      '92', '97', // AM
+      '95', // RR
+      '96', // AP
+      '98', '99' // MA
+    ];
+    
+    if (!validDDDs.includes(ddd)) {
+      setWhatsappError("DDD inválido");
       return false;
     }
     
-    const ddi = ddiMatch[1];
-    
-    // Para Brasil (+55), validações específicas
-    if (ddi === '55') {
-      const localNumbers = numbers.substring(2); // Remove DDI
-      
-      if (localNumbers.length < 10) {
-        setWhatsappError("Para Brasil: DDD + 8 ou 9 dígitos");
-        return false;
-      }
-      
-      if (localNumbers.length > 11) {
-        setWhatsappError("Número muito longo para Brasil");
-        return false;
-      }
-      
-      // Valida DDD brasileiro
-      const ddd = localNumbers.substring(0, 2);
-      const validDDDs = [
-        '11', '12', '13', '14', '15', '16', '17', '18', '19', // SP
-        '21', '22', '24', // RJ
-        '27', '28', // ES
-        '31', '32', '33', '34', '35', '37', '38', // MG
-        '41', '42', '43', '44', '45', '46', // PR
-        '47', '48', '49', // SC
-        '51', '53', '54', '55', // RS
-        '61', // DF
-        '62', '64', // GO
-        '63', // TO
-        '65', '66', // MT
-        '67', // MS
-        '68', // AC
-        '69', // RO
-        '71', '73', '74', '75', '77', // BA
-        '79', // SE
-        '81', '87', // PE
-        '82', // AL
-        '83', // PB
-        '84', // RN
-        '85', '88', // CE
-        '86', '89', // PI
-        '91', '93', '94', // PA
-        '92', '97', // AM
-        '95', // RR
-        '96', // AP
-        '98', '99' // MA
-      ];
-      
-      if (!validDDDs.includes(ddd)) {
-        setWhatsappError("DDD brasileiro inválido");
-        return false;
-      }
-      
-      // Para números de 9 dígitos, deve começar com 9
-      if (localNumbers.length === 11) {
-        const ninthDigit = localNumbers.substring(2, 3);
-        if (ninthDigit !== '9') {
-          setWhatsappError("Celular deve começar com 9");
-          return false;
-        }
-      }
+    // Valida se é celular (9º dígito deve ser 9)
+    const ninthDigit = numbers.substring(4, 5);
+    if (ninthDigit !== '9') {
+      setWhatsappError("Número deve ser de celular (começar com 9)");
+      return false;
     }
     
     setWhatsappError("");
     return true;
-  };
-
-  // Função para formatar WhatsApp para API (remove parênteses e espaços)
-  const formatWhatsAppForAPI = (whatsapp: string) => {
-    return whatsapp.replace(/[^\d+]/g, '');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -196,11 +155,10 @@ export function DemoModal({ trigger }: DemoModalProps) {
       const publicKey = 'EeR2CC2ldoYNUt_1M'; // Substitua pela sua Public Key
 
       // Mapeamento dos campos conforme solicitado
-      // WhatsApp formatado para API (sem parênteses e espaços)
       const templateParams = {
         nome: formData.name,
         email: formData.email,
-        wpp: formatWhatsAppForAPI(formData.whatsapp), // Formato para API do WhatsApp
+        wpp: formData.whatsapp,
         empresa: formData.company,
         nofunc: formData.companySize,
         mensagem: formData.message
@@ -281,7 +239,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
                 id="whatsapp"
                 value={formData.whatsapp}
                 onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                placeholder="+55 (11) 99999-9999"
+                placeholder="+55 (47) 99999-9999"
                 required
                 className={`border-primary/20 focus:border-primary ${whatsappError ? 'border-destructive' : ''}`}
               />
@@ -289,7 +247,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
                 <p className="text-xs text-destructive mt-1">{whatsappError}</p>
               )}
               <p className="text-xs text-muted-foreground">
-                Brasil: +55 (DDD) 8/9 dígitos | Outros: +DDI número
+                Formato: +55 (DDD) 9XXXX-XXXX
               </p>
             </div>
             <div className="space-y-2">
