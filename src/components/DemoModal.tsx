@@ -1,26 +1,13 @@
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { CalendarDays, Send } from "lucide-react";
-import emailjs from "@emailjs/browser";
-import { parsePhoneNumberFromString } from "libphonenumber-js";
+import emailjs from '@emailjs/browser';
 
 interface DemoModalProps {
   trigger: React.ReactNode;
@@ -37,90 +24,41 @@ export function DemoModal({ trigger }: DemoModalProps) {
     whatsapp: "",
     company: "",
     companySize: "",
-    message: "",
+    message: ""
   });
 
-  const [whatsappError, setWhatsappError] = useState("");
-
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    // A validação pode ser feita aqui para feedback em tempo real
-    if (field === "whatsapp") {
-      validateWhatsApp(value);
-    }
-  };
-
-  const validateWhatsApp = (whatsapp: string): boolean => {
-    // Se o campo estiver vazio, não há erro, mas ele ainda será tratado como obrigatório na submissão
-    if (!whatsapp.trim()) {
-      setWhatsappError("");
-      return false; // Não é válido se estiver vazio, mas não exibe erro específico ainda
-    }
-
-    const phoneNumber = parsePhoneNumberFromString(whatsapp);
-    if (!phoneNumber || !phoneNumber.isValid()) {
-      setWhatsappError(
-        "Número inválido. Use o formato internacional, ex: +55 11 99999-9999"
-      );
-      return false;
-    }
-    setWhatsappError("");
-    return true;
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Revalida o WhatsApp no momento da submissão para garantir o estado mais recente
-    const isWhatsAppValid = validateWhatsApp(formData.whatsapp);
-
-    // Validação de todos os campos obrigatórios
-    const areRequiredFieldsFilled =
-      formData.name.trim() !== "" &&
-      formData.email.trim() !== "" &&
-      formData.company.trim() !== "" &&
-      formData.whatsapp.trim() !== ""; // WhatsApp também é obrigatório
-
-    if (!isWhatsAppValid || !areRequiredFieldsFilled) {
-      toast({
-        title: "Erro de validação",
-        description:
-          "Por favor, preencha todos os campos obrigatórios e insira um número de WhatsApp válido.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
-      const serviceId = "service_dkt0u4s";
-      const templateId = "template_lp";
-      const publicKey = "EeR2CC2ldoYNUt_1M";
+      // Configuração do EmailJS - substitua pelos seus IDs reais
+      const serviceId = 'YOUR_SERVICE_ID'; // Substitua pelo seu Service ID
+      const serviceId = 'service_dkt0u4s'; // Substitua pelo seu Service ID
+      const templateId = 'template_lp'; // Template ID fornecido
+      const publicKey = 'YOUR_PUBLIC_KEY'; // Substitua pela sua Public Key
+      const publicKey = 'EeR2CC2ldoYNUt_1M'; // Substitua pela sua Public Key
 
-      const phoneNumber = parsePhoneNumberFromString(formData.whatsapp);
-      // Garante um fallback caso phoneNumber seja null/undefined
-      const formattedPhone = phoneNumber?.formatInternational() ?? formData.whatsapp;
-      // Garante que cleanNumber seja uma string vazia se phoneNumber for null
-      const cleanNumber = phoneNumber?.number?.replace("+", "") ?? "";
-      const whatsappLink = `https://wa.me/${cleanNumber}`;
-
+      // Mapeamento dos campos conforme solicitado
       const templateParams = {
         nome: formData.name,
         email: formData.email,
-        wpp: formattedPhone,
-        wpp_link: whatsappLink,
+        wpp: formData.whatsapp,
         empresa: formData.company,
         nofunc: formData.companySize,
-        mensagem: formData.message,
+        mensagem: formData.message
       };
 
+      // Envio do email via EmailJS
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       toast({
         title: "Demonstração agendada!",
-        description:
-          "Nossa equipe entrará em contato em breve para agendar sua demonstração personalizada.",
+        description: "Nossa equipe entrará em contato em breve para agendar sua demonstração personalizada.",
       });
 
       setIsOpen(false);
@@ -130,34 +68,26 @@ export function DemoModal({ trigger }: DemoModalProps) {
         whatsapp: "",
         company: "",
         companySize: "",
-        message: "",
+        message: ""
       });
-      setWhatsappError(""); // Limpa o erro ao fechar
+
     } catch (error) {
-      console.error("Erro ao enviar email:", error);
+      console.error('Erro ao enviar email:', error);
       toast({
         title: "Erro ao enviar",
-        description:
-          "Ocorreu um erro ao enviar sua solicitação. Tente novamente ou entre em contato via WhatsApp.",
-        variant: "destructive",
+        description: "Ocorreu um erro ao enviar sua solicitação. Tente novamente ou entre em contato via WhatsApp.",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Determina se o botão de envio deve estar desabilitado
-  const isSubmitDisabled =
-    isSubmitting ||
-    !!whatsappError || // Desabilita se houver um erro de formatação do WhatsApp
-    !formData.name.trim() || // Desabilita se o nome estiver vazio
-    !formData.email.trim() || // Desabilita se o email estiver vazio
-    !formData.company.trim() || // Desabilita se a empresa estiver vazia
-    !formData.whatsapp.trim(); // Desabilita se o WhatsApp estiver vazio
-
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
+      <DialogTrigger asChild>
+        {trigger}
+      </DialogTrigger>
       <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-sm border-primary/20">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-xl text-primary">
@@ -195,22 +125,12 @@ export function DemoModal({ trigger }: DemoModalProps) {
               <Label htmlFor="whatsapp">WhatsApp *</Label>
               <Input
                 id="whatsapp"
-                type="tel"
                 value={formData.whatsapp}
                 onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                onBlur={(e) => validateWhatsApp(e.target.value)} // Adicionado validação no onBlur
-                placeholder="+55 11 99999-9999"
+                placeholder="(47) 99999-9999"
                 required
-                className={`border-primary/20 focus:border-primary ${
-                  whatsappError ? "border-destructive" : ""
-                }`}
+                className="border-primary/20 focus:border-primary"
               />
-              {whatsappError && (
-                <p className="text-xs text-destructive mt-1">{whatsappError}</p>
-              )}
-              <p className="text-xs text-muted-foreground">
-                Formato internacional: +55 11 99999-9999
-              </p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="company">Empresa *</Label>
@@ -226,10 +146,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
 
           <div className="space-y-2">
             <Label htmlFor="companySize">Tamanho da empresa</Label>
-            <Select
-              value={formData.companySize}
-              onValueChange={(value) => handleInputChange("companySize", value)}
-            >
+            <Select value={formData.companySize} onValueChange={(value) => handleInputChange("companySize", value)}>
               <SelectTrigger className="border-primary/20 focus:border-primary">
                 <SelectValue placeholder="Selecione o tamanho" />
               </SelectTrigger>
@@ -253,12 +170,12 @@ export function DemoModal({ trigger }: DemoModalProps) {
             />
           </div>
 
-          <Button
-            type="submit"
-            variant="hero"
-            size="lg"
-            className="w-full"
-            disabled={isSubmitDisabled} // Usa a variável calculada
+          <Button 
+            type="submit" 
+            variant="hero" 
+            size="lg" 
+            className="w-full" 
+            disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
@@ -276,7 +193,6 @@ export function DemoModal({ trigger }: DemoModalProps) {
       </DialogContent>
     </Dialog>
   );
-}
     </Dialog>
   );
 }
