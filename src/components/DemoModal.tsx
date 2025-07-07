@@ -1,4 +1,4 @@
- import { useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -283,7 +283,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
               id="message"
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
-              placeholder="Conte-nos mais sua área de atuação e sobre seus objetivos..."
+              placeholder="Conte-nos mais sua área de atuação e sobre suas necessidades..."
               className="border-primary/20 focus:border-primary min-h-[80px]"
             />
           </div>
