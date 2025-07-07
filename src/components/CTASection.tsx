@@ -70,7 +70,7 @@ export function CTASection() {
           {/* Additional info */}
           <div className="text-center text-primary-foreground/70 text-sm">
             <p className="mb-2">✨ <b>AUMENTE</b> seu ticket médio, ✨ <b>FIDELIZE</b> pacotes próprios, ✨ <b>ESCALE</b> sem contratar equipe médica ou técnica</p>
-            <p>Mais de <strong className="text-secondary">200 corretoras</strong> já transformaram seus negócios</p>
+            <p>Diversas <strong className="text-secondary">corretoras</strong> já transformaram seus negócios</p>
           </div>
         </div>
       </div>
