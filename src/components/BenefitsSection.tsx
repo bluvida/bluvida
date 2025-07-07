@@ -87,7 +87,7 @@ export function BenefitsSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">Maria Gonzalez</div>
-                  <div className="text-sm text-muted-foreground">Diretora Comercial - Seguradora Líder MG</div>
+                  <div className="text-sm text-muted-foreground">Diretora Comercial - Corretora Líder MG</div>
                 </div>
               </div>
             </div>
