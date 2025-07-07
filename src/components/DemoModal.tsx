@@ -174,7 +174,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
                   id="whatsapp"
                   value={formData.whatsapp}
                   onChange={(e) => handleInputChange("whatsapp", e.target.value)}
-                  placeholder="+55 (47) 99999-9999"
+                  placeholder="(99) 99999-9999"
                   required
                   className={`border-primary/20 focus:border-primary ${whatsappError ? 'border-destructive' : ''}`}
                 />
