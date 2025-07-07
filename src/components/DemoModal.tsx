@@ -269,7 +269,7 @@ export function DemoModal({ trigger }: DemoModalProps) {
                 <SelectValue placeholder="Selecione o tamanho" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1-10">1-10 funcionários</SelectItem>
+                <SelectItem value="0-10">0-10 funcionários</SelectItem>
                 <SelectItem value="11-50">11-50 funcionários</SelectItem>
                 <SelectItem value="51-100">51-100 funcionários</SelectItem>
                 <SelectItem value="101+">101+ funcionários</SelectItem>
