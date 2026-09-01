@@ -1,27 +1,82 @@
-import { Check, Smartphone, Palette, CreditCard, Shield } from "lucide-react";
+import { Building2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export function SolutionSection() {
   const features = [
     {
-      icon: Palette,
-      title: "Aplicativo e painel com a identidade visual da sua corretora",
-      description: "Logo, cores, domínio e marca 100% personalizados"
+      icon: Building2,
+      title: "Administradoras de Benefícios ",
+      description: ""
     },
     {
-      icon: Shield,
-      title: "Pacotes personalizáveis com os serviços que desejar incluir",
-      description: "Monte seu portfólio de acordo com seu público"
+      icon: Building2,
+      title: "Corretoras de Seguros",
+      description: ""
     },
     {
-      icon: CreditCard,
-      title: "Área do cliente, CRM, meios de pagamento e suporte integrados",
-      description: "Tudo em uma plataforma completa e funcional"
+      icon: Building2,
+      title: "Consultorias Empresariais",
+      description: ""
     },
     {
-      icon: Smartphone,
-      title: "Total controle: sem dependência de operadoras ou sistemas engessados",
-      description: "Sua empresa, suas regras, sua autonomia"
+      icon: Building2,
+      title: "Empresas de Benefícios Corporativos",
+      description: ""
+    },
+        {
+      icon: Building2,
+      title: "Clínicas e Centros Médicos",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Operadoras de Saúde",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Associações e Sindicatos",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Cooperativas",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Cooperativas",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Cooperativas",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Plataformas de Benefícios",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Empresas de Tecnologia",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Startups de Saúde",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Franqueadoras",
+      description: ""
+    },
+    {
+      icon: Building2,
+      title: "Empresas que desejam criar um novo produto de receita recorrente",
+      description: ""
     }
   ];
 
@@ -32,13 +87,11 @@ export function SolutionSection() {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              <span className="text-primary">Sua corretora</span>,{" "}
-              <span className="bg-gradient-secondary bg-clip-text text-transparent">sua marca</span>,{" "}
-              <span className="text-primary">nossa tecnologia</span>
+              <span className="text-primary">para quem é o</span>{" "}
+              <span className="bg-gradient-secondary bg-clip-text text-transparent">White Label BluVida</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Com a plataforma white-label da BluVida, você oferece um sistema completo e 
-              customizado com os recursos que precisa.
+              Nosso modelo foi desenvolvido para empresas que desejam atuar no mercado de saúde digital.<br />Entre elas:
             </p>
           </div>
 
