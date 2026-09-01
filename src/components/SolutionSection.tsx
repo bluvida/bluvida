@@ -5,7 +5,7 @@ export function SolutionSection() {
   const features = [
     {
       icon: Building2,
-      title: "Administradoras de Benefícios ",
+      title: "Administradoras de Benefícios",
       description: ""
     },
     {
