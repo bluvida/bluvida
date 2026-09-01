@@ -24,7 +24,7 @@ export function CTASection() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
-              Vamos colocar sua corretora no{" "}
+              Vamos colocar sua empresa no{" "}
               <span className="bg-gradient-secondary bg-clip-text text-transparent">
                 jogo digital
               </span>?
@@ -70,7 +70,7 @@ export function CTASection() {
           {/* Additional info */}
           <div className="text-center text-primary-foreground/70 text-sm">
             <p className="mb-2">✨ <b>AUMENTE</b> seu ticket médio, ✨ <b>FIDELIZE</b> pacotes próprios, ✨ <b>ESCALE</b> sem contratar equipe médica ou técnica</p>
-            <p>Diversas <strong className="text-secondary">corretoras</strong> já transformaram seus negócios</p>
+            <p><strong className="text-secondary">Transforme</strong> seu negócio!</p>
           </div>
         </div>
       </div>
