@@ -95,29 +95,30 @@ export function SolutionSection() {
             </p>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="group p-8 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-success/10 group-hover:bg-success/20 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0">
-                    <Check className="w-6 h-6 text-success" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
-                        {feature.title}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+{/* Features Grid */}
+<div className="grid md:grid-cols-3 gap-6 mb-16"> {/* Mudei gap-8 para gap-6 para aproximar os cards entre si */}
+  {features.map((feature, index) => (
+    <Card
+      key={index}
+      className="group p-5 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5" {/* Mudei p-8 para p-5 para o card ficar mais compacto */}
+    >
+      {/* Mudamos items-start para items-center para alinhar o check verticalmente com o texto */}
+      {/* Mudamos gap-4 para gap-3 para aproximar o check do texto */}
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-success/10 group-hover:bg-success/20 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0"> {/* Reduzi o box do ícone de w-12/h-12 para w-10/h-10 */}
+          <Check className="w-5 h-5 text-success" /> {/* Reduzi o Check de w-6/h-6 para w-5/h-5 */}
+        </div>
+        
+        <div className="flex-1 min-w-0">
+          {/* Removi as divs extras e a margem mb-3 que jogava o texto para baixo */}
+          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight truncate">
+            {feature.title}
+          </h3>
+        </div>
+      </div>
+    </Card>
+  ))}
+</div>
 
           {/* Highlight Box */}
           <div className="bg-gradient-primary rounded-3xl p-8 md:p-12 text-center shadow-primary">
