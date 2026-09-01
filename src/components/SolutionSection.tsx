@@ -96,25 +96,30 @@ export function SolutionSection() {
           </div>
 
 {/* Features Grid */}
-<div className="grid md:grid-cols-3 gap-6 mb-16"> {/* Mudei gap-8 para gap-6 para aproximar os cards entre si */}
+{/* Mudamos gap-8 para gap-4 para aproximar os cards na vertical e horizontal */}
+<div className="grid md:grid-cols-3 gap-4 mb-16">
   {features.map((feature, index) => (
     <Card
       key={index}
-      className="group p-5 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5" {/* Mudei p-8 para p-5 para o card ficar mais compacto */}
+      {/* Mudamos p-8 para p-4 para reduzir o tamanho interno do card */}
+      className="group p-4 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5"
     >
-      {/* Mudamos items-start para items-center para alinhar o check verticalmente com o texto */}
-      {/* Mudamos gap-4 para gap-3 para aproximar o check do texto */}
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-success/10 group-hover:bg-success/20 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0"> {/* Reduzi o box do ícone de w-12/h-12 para w-10/h-10 */}
-          <Check className="w-5 h-5 text-success" /> {/* Reduzi o Check de w-6/h-6 para w-5/h-5 */}
+      {/* Mudamos items-start para items-center para garantir o alinhamento vertical perfeito */}
+      {/* Mudamos gap-4 para gap-3 para aproximar o checkbox do texto */}
+      <div className="flex items-center gap-3 h-full">
+        
+        {/* Caixa do Checkbox (Reduzida de w-12 h-12 para w-10 h-10) */}
+        <div className="w-10 h-10 bg-success/10 group-hover:bg-success/20 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0">
+          <Check className="w-5 h-5 text-success" />
         </div>
         
+        {/* Container do texto sem nenhuma div ou margem extra atrapalhando o alinhamento */}
         <div className="flex-1 min-w-0">
-          {/* Removi as divs extras e a margem mb-3 que jogava o texto para baixo */}
-          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight truncate">
+          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight text-sm md:text-base">
             {feature.title}
           </h3>
         </div>
+
       </div>
     </Card>
   ))}
