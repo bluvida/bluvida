@@ -40,9 +40,9 @@ export function BenefitsSection() {
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Criar uma operação própria de telemedicina exige tecnologia, estrutura, personalização e implantação.<br /><br />
-Por isso, o modelo White Label BluVida prevê um <b>investimento inicial de implantação</b>, destinado à configuração da plataforma, personalização da identidade visual, treinamento da equipe e preparação da operação para o início das atividades.<br /><br />
+Por isso, o modelo White Label BluVida prevê um investimento inicial de implantação, destinado à configuração da plataforma, personalização da identidade visual, treinamento da equipe e preparação da operação para o início das atividades.<br /><br />
 Após a implantação, a operação passa a funcionar em um modelo de receita recorrente, permitindo que sua empresa comercialize os serviços utilizando sua própria marca.<br /><br />
-<b>Cada projeto é apresentado de forma personalizada, de acordo com o perfil e o modelo de negócio do parceiro.</b>
+Cada projeto é apresentado de forma personalizada, de acordo com o perfil e o modelo de negócio do parceiro.
 
             </p>
           </div>
