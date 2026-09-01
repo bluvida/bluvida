@@ -35,7 +35,7 @@ export function ProblemsSection() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Perguntas{" "}
-            <span className="text-destructive">frequentes</span>?
+            <span className="text-destructive">frequentes</span>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
