@@ -24,14 +24,14 @@ export function CTASection() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
-              Vamos colocar sua empresa no{" "}
+              Pronto para lançar sua própria{" "}
               <span className="bg-gradient-secondary bg-clip-text text-transparent">
-                jogo digital
+                operação de telemedicina
               </span>?
             </h2>
 
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Agende uma demonstração e veja como sua plataforma pode estar ativa em pouco tempo.
+              Converse com um especialista da BluVida e descubra como estruturar uma operação completa utilizando sua marca, com tecnologia consolidada e suporte especializado.
             </p>
           </div>
 
