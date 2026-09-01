@@ -54,7 +54,7 @@ export function HeroSection() {
 
           {/* Main headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-in">
-            Teha sua própria empresa de{" "}
+            Tenha sua própria empresa de{" "}
             <span className="bg-gradient-secondary bg-clip-text text-transparent">
               telemedicina com a sua marca
             </span>
