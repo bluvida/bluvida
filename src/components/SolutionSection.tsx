@@ -87,7 +87,7 @@ export function SolutionSection() {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              <span className="text-primary">para quem é o</span>{" "}
+              <span className="text-primary">Para quem é o</span>{" "}
               <span className="bg-gradient-secondary bg-clip-text text-transparent">White Label BluVida</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
