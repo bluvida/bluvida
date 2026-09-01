@@ -56,21 +56,20 @@ export function HeroSection() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-in">
             Tenha sua própria empresa de{" "}
             <span className="bg-gradient-secondary bg-clip-text text-transparent">
-              telemedicina com a sua marca
+              Telemedicina com a sua marca
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-            — com sua marca, seu modelo e{" "}
-            <strong className="text-secondary">zero complicação técnica</strong>.
+            Transforme sua ideia em uma operação completa de telemedicina, utilizando sua identidade visual,{" "}
+            <strong className="text-secondary">sem desenvolver tecnologia, contratar equipe médica ou criar uma plataforma do zero.</strong>.
           </p>
 
           <div className="bg-card/10 backdrop-blur-sm border border-card/20 rounded-2xl p-6 mb-10 animate-fade-in">
             <p className="text-base md:text-lg text-primary-foreground/80 leading-relaxed">
-              Chega de vender os mesmos planos que todos os concorrentes. Tenha seu próprio sistema de telemedicina,
-              <span className="text-secondary font-semibold"> personalizado, white-label</span> e pronto para revenda com
-              <span className="text-secondary font-semibold"> mais margem e fidelização</span>.
+              Tudo o que você precisa para lançar sua operação já está pronto. Você cuida da marca e do crescimento do negócio. 
+              <span className="text-secondary font-semibold"> A BluVida Telemedicina fornece a tecnologia, a estrutura e a operação médica</span>.
             </p>
           </div>
 
