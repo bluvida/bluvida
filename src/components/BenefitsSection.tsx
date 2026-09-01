@@ -36,11 +36,14 @@ export function BenefitsSection() {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Resultados <span className="bg-gradient-secondary bg-clip-text text-transparent">reais</span> para 
-              corretoras <span className="text-primary">modernas</span>
+              <span className="bg-gradient-secondary bg-clip-text text-transparent">Quanto</span> é necessário para <span className="text-primary">iniciar</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Veja como outras corretoras estão transformando seus negócios com nossa plataforma
+              Criar uma operação própria de telemedicina exige tecnologia, estrutura, personalização e implantação.<br /><br />
+Por isso, o modelo White Label BluVida prevê um <b>investimento inicial de implantação</b>, destinado à configuração da plataforma, personalização da identidade visual, treinamento da equipe e preparação da operação para o início das atividades.<br /><br />
+Após a implantação, a operação passa a funcionar em um modelo de receita recorrente, permitindo que sua empresa comercialize os serviços utilizando sua própria marca.<br /><br />
+<b>Cada projeto é apresentado de forma personalizada, de acordo com o perfil e o modelo de negócio do parceiro.</b>
+
             </p>
           </div>
 
