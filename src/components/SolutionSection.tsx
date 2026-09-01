@@ -91,7 +91,7 @@ export function SolutionSection() {
               <span className="bg-gradient-secondary bg-clip-text text-transparent">White Label BluVida</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Nosso modelo foi desenvolvido para empresas que desejam atuar no mercado de saúde digital.<br />Entre elas:
+              Nosso modelo foi desenvolvido para empresas que desejam atuar no mercado de saúde digital. Entre elas:
             </p>
           </div>
 
@@ -109,14 +109,10 @@ export function SolutionSection() {
                   
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
-                      <feature.icon className="w-5 h-5 text-primary" />
                       <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
                         {feature.title}
                       </h3>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
                   </div>
                 </div>
               </Card>
