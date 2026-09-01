@@ -63,7 +63,7 @@ export function HeroSection() {
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in">
             Transforme sua ideia em uma operação completa de telemedicina, utilizando sua identidade visual,{" "}
-            <strong className="text-secondary">sem desenvolver tecnologia, contratar equipe médica ou criar uma plataforma do zero.</strong>.
+            <strong className="text-secondary">sem desenvolver tecnologia, contratar equipe médica ou criar uma plataforma do zero</strong>.
           </p>
 
           <div className="bg-card/10 backdrop-blur-sm border border-card/20 rounded-2xl p-6 mb-10 animate-fade-in">
