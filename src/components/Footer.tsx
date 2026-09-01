@@ -38,7 +38,7 @@ export function Footer() {
           
           <div className="text-center md:text-right">
             <p className="text-sm text-primary-foreground/80">
-              © 2025 BluVida. Todos os direitos reservados.
+              © 2026 BluVida. Todos os direitos reservados.
             </p>
             <p className="text-xs text-primary-foreground/60 mt-1">
               Plataforma White Label de Telemedicina para Corretoras
