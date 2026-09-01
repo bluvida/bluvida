@@ -96,26 +96,25 @@ export function SolutionSection() {
           </div>
 
 {/* Features Grid */}
-{/* Mudamos gap-8 para gap-4 para aproximar os cards na vertical e horizontal */}
-<div className="grid md:grid-cols-3 gap-4 mb-16">
+{/* O !gap-4 força os cards a se aproximarem */}
+<div className="grid grid-cols-1 md:grid-cols-3 !gap-4 mb-16">
   {features.map((feature, index) => (
     <Card
       key={index}
-      {/* Mudamos p-8 para p-4 para reduzir o tamanho interno do card */}
-      className="group p-4 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5"
+      {/* O !p-4 força o card a ficar menor e menos espesso */}
+      className="group !p-4 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5"
     >
-      {/* Mudamos items-start para items-center para garantir o alinhamento vertical perfeito */}
-      {/* Mudamos gap-4 para gap-3 para aproximar o checkbox do texto */}
-      <div className="flex items-center gap-3 h-full">
+      {/* Colocamos !items-center e !flex para garantir que o alinhamento ocorra independente do componente Card */}
+      <div className="!flex !items-center !gap-3 w-full h-full min-h-[48px]">
         
-        {/* Caixa do Checkbox (Reduzida de w-12 h-12 para w-10 h-10) */}
-        <div className="w-10 h-10 bg-success/10 group-hover:bg-success/20 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0">
+        {/* Caixa do Checkbox */}
+        <div className="w-10 h-10 bg-success/10 group-hover:bg-success/20 rounded-xl !flex !items-center !justify-center transition-colors duration-300 flex-shrink-0">
           <Check className="w-5 h-5 text-success" />
         </div>
         
-        {/* Container do texto sem nenhuma div ou margem extra atrapalhando o alinhamento */}
+        {/* Texto da Feature */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight text-sm md:text-base">
+          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-none text-sm md:text-base">
             {feature.title}
           </h3>
         </div>
