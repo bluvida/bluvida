@@ -1,21 +1,31 @@
-import { AlertTriangle, Users, Building2 } from "lucide-react";
+import { SquareCode, BriefcaseMedical, Hourglass, ShoppingCart, Ribbon } from "lucide-react";
 
 export function ProblemsSection() {
   const problems = [
     {
-      icon: Users,
-      title: "Todo mundo vende os mesmos planos",
-      description: "Diferenciação virou um desafio no mercado saturado"
+      icon: SquareCode,
+      title: "Preciso desenvolver um aplicativo?",
+      description: "Não. A plataforma já está pronta e é personalizada com a identidade da sua empresa."
     },
     {
-      icon: Building2,
-      title: "Empresas cobram inovação",
-      description: "Clientes pedem pacotes mais completos e modernos"
+      icon: BriefcaseMedical,
+      title: "Preciso contratar médicos?",
+      description: "Não. A operação médica é disponibilizada pela BluVida."
     },
     {
-      icon: AlertTriangle,
-      title: "Marca própria parece complicado",
-      description: "Oferecer algo personalizado parece caro e complexo"
+      icon: Hourglass,
+      title: "Quanto tempo leva a implantação?",
+      description: "A implantação é planejada conforme o projeto e inclui personalização, treinamento e configuração da operação."
+    },
+    {
+      icon: ShoppingCart,
+      title: "Posso vender para empresas e pessoas físicas?",
+      description: "Sim. O modelo White Label permite que sua empresa defina sua estratégia comercial."
+    },
+    {
+      icon: Ribbon,
+      title: "Posso utilizar minha própria marca?",
+      description: "Sim. O White Label foi desenvolvido para fortalecer a identidade da sua empresa."
     }
   ];
 
@@ -24,12 +34,9 @@ export function ProblemsSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Você já se deparou com esses{" "}
-            <span className="text-destructive">desafios</span>?
+            Perguntas{" "}
+            <span className="text-destructive">frequentes</span>?
           </h2>
-          <p className="text-lg text-muted-foreground mb-16">
-            Sabemos que o mercado de seguros está cada vez mais competitivo...
-          </p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {problems.map((problem, index) => (
