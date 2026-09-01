@@ -45,16 +45,6 @@ export function SolutionSection() {
     },
     {
       icon: Building2,
-      title: "Cooperativas",
-      description: ""
-    },
-    {
-      icon: Building2,
-      title: "Cooperativas",
-      description: ""
-    },
-    {
-      icon: Building2,
       title: "Plataformas de Benefícios",
       description: ""
     },
