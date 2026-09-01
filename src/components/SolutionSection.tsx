@@ -73,11 +73,11 @@ export function SolutionSection() {
           {/* Highlight Box */}
           <div className="bg-gradient-primary rounded-3xl p-8 md:p-12 text-center shadow-primary">
             <h3 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-              A diferenciação que você precisava está aqui
+              O mercado de saúde digital continua crescendo. A pergunta é: sua empresa fará parte desse crescimento?
             </h3>
             <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed">
-              Pare de competir apenas por preço. Ofereça valor real, exclusivo e com sua marca. 
-              A BluVida cuida da tecnologia, você cuida dos seus clientes.
+              Empresas de diversos segmentos estão criando operações próprias de telemedicina para oferecer serviços de saúde aos seus clientes, colaboradores e associados.
+Com o modelo White Label da BluVida, você pode lançar sua própria operação utilizando sua marca, seu domínio e sua estratégia comercial, sem precisar desenvolver tecnologia ou estruturar uma operação médica.
             </p>
           </div>
         </div>
