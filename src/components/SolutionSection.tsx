@@ -96,33 +96,28 @@ export function SolutionSection() {
           </div>
 
 {/* Features Grid */}
-{/* O !gap-4 força os cards a se aproximarem */}
-<div className="grid grid-cols-1 md:grid-cols-3 !gap-4 mb-16">
-  {features.map((feature, index) => (
-    <Card
-      key={index}
-      {/* O !p-4 força o card a ficar menor e menos espesso */}
-      className="group !p-4 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5"
-    >
-      {/* Colocamos !items-center e !flex para garantir que o alinhamento ocorra independente do componente Card */}
-      <div className="!flex !items-center !gap-3 w-full h-full min-h-[48px]">
-        
-        {/* Caixa do Checkbox */}
-        <div className="w-10 h-10 bg-success/10 group-hover:bg-success/20 rounded-xl !flex !items-center !justify-center transition-colors duration-300 flex-shrink-0">
-          <Check className="w-5 h-5 text-success" />
-        </div>
-        
-        {/* Texto da Feature */}
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-none text-sm md:text-base">
-            {feature.title}
-          </h3>
-        </div>
-
-      </div>
-    </Card>
-  ))}
-</div>
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className="group p-8 hover:shadow-elegant transition-all duration-300 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-card to-accent/5"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-success/10 group-hover:bg-success/20 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0">
+                    <Check className="w-6 h-6 text-success" />
+                  </div>
+                  
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
+                        {feature.title}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
 
           {/* Highlight Box */}
           <div className="bg-gradient-primary rounded-3xl p-8 md:p-12 text-center shadow-primary">
