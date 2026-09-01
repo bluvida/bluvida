@@ -54,9 +54,9 @@ export function HeroSection() {
 
           {/* Main headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-in">
-            Transforme sua corretora em uma{" "}
+            Teha sua própria empresa de{" "}
             <span className="bg-gradient-secondary bg-clip-text text-transparent">
-              plataforma digital de saúde
+              telemedicina com a sua marca
             </span>
           </h1>
 
